@@ -26,6 +26,11 @@ jobs:
     - name: Install dependencies (windows)
       if: matrix.os == 'windows-latest'
       run: echo "This does nothing"
+    - name: Setup Python 3.12
+      if: matrix.os == 'windows-latest'
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.13'
     - name: Install Qt
       if: matrix.os == 'windows-latest'
       uses: jurplel/install-qt-action@v4
