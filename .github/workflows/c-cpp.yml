@@ -18,7 +18,7 @@ jobs:
       if: matrix.os == 'ubuntu-latest'
       run: |
         sudo apt -y update
-        sudo apt install qt511declarative qt511tools libgl1-mesa-dev
+        sudo apt install qtbase5-dev libgl1-mesa-dev
 
     - name: Install dependencies (windows)
       if: matrix.os == 'windows-latest'
