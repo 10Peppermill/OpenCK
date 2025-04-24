@@ -23,9 +23,17 @@ jobs:
     - name: Install dependencies (windows)
       if: matrix.os == 'windows-latest'
       run: echo "This does nothing"
+    - name: Install Qt
+      if: matrix.os == 'windows-latest'
+      uses: jurplel/install-qt-action@v4
+      with:
+        host:         windows
+        target:       desktop
+        arch:         win64_msvc2019_64
+        dir:          ${{ runner.temp }}
+        setup-python: false 
 
     - uses: actions/checkout@v4
-    
     - name: build
       run: |
         mkdir build
