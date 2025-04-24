@@ -37,6 +37,7 @@ jobs:
         dir:          ${{ runner.temp }}
         setup-python: false
     - name: Set Qt Environment Variables
+      if: matrix.os == 'windows-latest'
       run: |
         echo "Setting Qt Environment Variables"
         echo "QTDIR=${{ runner.temp }}/Qt/${{ env.QT_VERSION }}/msvc2019_64" >> $GITHUB_ENV
