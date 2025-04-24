@@ -1,0 +1,31 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: "Build"
+    strategy:
+        matrix:
+            os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - name: Install dependencies (linux)
+      if: matrix.os == 'ubuntu-latest'
+      run: sudo apt install qt511declarative qt511tools libgl1-mesa-dev
+
+    - name: Install dependencies (windows)
+      if: matrix.os == 'windows-latest'
+      run: echo "This does nothing"
+
+    - uses: actions/checkout@v4
+    
+    - name: build
+      run: |
+        mkdir build
+        cmake .
+        make ./build
