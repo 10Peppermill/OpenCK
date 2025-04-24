@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+    QT_VERSION: 5.15.2
+
 jobs:
   build:
     name: "Build"
@@ -27,11 +30,18 @@ jobs:
       if: matrix.os == 'windows-latest'
       uses: jurplel/install-qt-action@v4
       with:
+        version:      ${{ env.QT_VERSION }}
         host:         windows
         target:       desktop
         arch:         win64_msvc2019_64
         dir:          ${{ runner.temp }}
-        setup-python: false 
+        setup-python: false
+    - name: Set Qt Environment Variables
+      run: |
+        echo "Setting Qt Environment Variables"
+        echo "QTDIR=${{ runner.temp }}/Qt/${{ env.QT_VERSION }}/msvc2019_64" >> $GITHUB_ENV
+        echo "QtToolsPath=${{ runner.temp }}/Qt/${{ env.QT_VERSION }}/msvc2019_64/bin" >> $GITHUB_ENV
+      shell: bash
 
     - uses: actions/checkout@v4
     - name: build
