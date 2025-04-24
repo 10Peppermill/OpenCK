@@ -29,5 +29,6 @@ jobs:
     - name: build
       run: |
         mkdir build
-        cmake .
-        make ./build
+        cd build
+        cmake ../
+        make
