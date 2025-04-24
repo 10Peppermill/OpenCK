@@ -16,7 +16,9 @@ jobs:
     steps:
     - name: Install dependencies (linux)
       if: matrix.os == 'ubuntu-latest'
-      run: sudo apt install qt511declarative qt511tools libgl1-mesa-dev
+      run: |
+        sudo apt -y update
+        sudo apt install qt511declarative qt511tools libgl1-mesa-dev
 
     - name: Install dependencies (windows)
       if: matrix.os == 'windows-latest'
