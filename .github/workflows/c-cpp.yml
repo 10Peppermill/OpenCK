@@ -56,4 +56,4 @@ jobs:
         cd build
         cmake ../
         make
-        tree /f /a
+        tree -a
